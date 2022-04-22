@@ -1,12 +1,20 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
+const mongoose = require("mongoose");
 
 //setup app
 const app = express();
 
-//setup middleware for graphql
+// connect ko mlab db
+mongoose.connect(
+  "mongodb+srv://dt-gql-db:gql1234@cluster0.oscjd.mongodb.net/dt-gql-project?retryWrites=true&w=majority"
+);
+mongoose.connection.once("open", () => {
+  console.log("connection made");
+});
 
+//setup middleware for graphql
 app.use(
   "/graphql",
   graphqlHTTP({
