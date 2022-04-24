@@ -1,18 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
-const GET_AUTHORS = gql`
-  query {
-    authors {
-      name
-      id
-    }
-  }
-`;
+import { GET_AUTHORS_QUERY } from "../queries/queries";
 
 const AddBook = () => {
-  const { loading, error, data } = useQuery(GET_AUTHORS, {
-    fetchPolicy: "no-cache",
-  });
+  const { loading, error, data } = useQuery(GET_AUTHORS_QUERY);
   console.log({ data, error });
   return (
     <div>
