@@ -1,17 +1,12 @@
-import { ApolloClient, ApolloProvider } from "@apollo/client";
 import BookList from "./component/BookList";
-// appolo client setup
-const client = new ApolloClient({
-  uri: "https://localhost:4000/graphql",
-});
+import AddBook from "./component/AddBook";
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <div className="App">
-        <BookList />
-      </div>
-    </ApolloProvider>
+    <div className="App">
+      <BookList />
+      <AddBook />
+    </div>
   );
 }
 
