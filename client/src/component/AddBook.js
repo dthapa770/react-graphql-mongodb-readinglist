@@ -1,10 +1,43 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+import { useState } from "react";
+import {
+  GET_AUTHORS_QUERY,
+  ADD_BOOK,
+  GET_BOOKS_QUERY,
+} from "../queries/queries";
 
-import { GET_AUTHORS_QUERY } from "../queries/queries";
-
+const initialValues = {
+  name: "",
+  genre: "",
+  authorId: "",
+};
 const AddBook = () => {
-  const { loading, error, data } = useQuery(GET_AUTHORS_QUERY);
-  console.log({ data, error });
+  const { loading, data } = useQuery(GET_AUTHORS_QUERY);
+  const [values, setValues] = useState(initialValues);
+
+  const [addBook] = useMutation(ADD_BOOK, {
+    variables: {
+      name: values.name,
+      genre: values.genre,
+      authorId: values.authorId,
+    },
+    refetchQueries: [{ query: GET_BOOKS_QUERY }],
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(values);
+    addBook();
+  };
   return (
     <div>
       {loading ? (
@@ -12,23 +45,37 @@ const AddBook = () => {
       ) : (
         <div>
           <h1>Add Book</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="field">
               <label>Book name:</label>
-              <input type="text" />
+              <input
+                value={values.name}
+                name="name"
+                onChange={handleInputChange}
+                type="text"
+              />
             </div>
             <div className="field">
               <label>Genre:</label>
-              <input type="text" />
+              <input
+                value={values.genre}
+                name="genre"
+                onChange={handleInputChange}
+                type="text"
+              />
             </div>
             <div className="field">
               <label>Author:</label>
-              <select>
+              <select onChange={handleInputChange} name="authorId">
+                <option>Select Author</option>
                 {data.authors.map((author) => (
-                  <option key={author.id}>{author.name}</option>
+                  <option key={author.id} value={author.id}>
+                    {author.name}
+                  </option>
                 ))}
               </select>
             </div>
+            <button type="Submit">+</button>
           </form>
         </div>
       )}
