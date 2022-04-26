@@ -4,7 +4,9 @@ import {
   GET_AUTHORS_QUERY,
   ADD_BOOK,
   GET_BOOKS_QUERY,
-} from "../queries/queries";
+} from "../../queries/queries";
+
+import "./addbook.css";
 
 const initialValues = {
   name: "",
@@ -43,9 +45,8 @@ const AddBook = () => {
       {loading ? (
         <h1>loading....</h1>
       ) : (
-        <div>
-          <h1>Add Book</h1>
-          <form onSubmit={handleSubmit}>
+        <>
+          <form className="form-addbook" onSubmit={handleSubmit}>
             <div className="field">
               <label>Book name:</label>
               <input
@@ -77,7 +78,7 @@ const AddBook = () => {
             </div>
             <button type="Submit">+</button>
           </form>
-        </div>
+        </>
       )}
     </div>
   );

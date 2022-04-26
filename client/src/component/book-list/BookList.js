@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
 
-import { GET_BOOKS_QUERY } from "../queries/queries";
+import { GET_BOOKS_QUERY } from "../../queries/queries";
 
-import BookDetails from "./BookDetails";
+import BookDetails from "../book-details/BookDetails";
 import "./booklist.css";
 const BookList = () => {
   const { loading, error, data } = useQuery(GET_BOOKS_QUERY);
@@ -33,7 +33,11 @@ const BookList = () => {
           ))
         )}
       </ul>
-      {selected && <BookDetails bookId={selected} />}
+      {selected ? (
+        <BookDetails bookId={selected} />
+      ) : (
+        <p>No Books Selectd Yet...</p>
+      )}
     </div>
   );
 };

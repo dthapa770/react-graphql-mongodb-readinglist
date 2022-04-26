@@ -1,10 +1,6 @@
-#book-list {
-  padding: 0;
-}
-
 #book-list li {
+  display: inline-block;
   list-style-type: none;
-  width: 20%;
   margin: 12px;
   padding: 10px;
   border-radius: 4px;

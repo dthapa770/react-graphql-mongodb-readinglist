@@ -1,5 +1,5 @@
-import BookList from "./component/BookList";
-import AddBook from "./component/AddBook";
+import BookList from "./component/book-list/BookList";
+import AddBook from "./component/add-book/AddBook";
 
 function App() {
   return (

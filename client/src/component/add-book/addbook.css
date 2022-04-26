@@ -1,0 +1,38 @@
+.form-addbook {
+  background: #fff;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 400px;
+}
+
+.form-addbook .field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.form-addbook label {
+  text-align: right;
+  padding: 6px;
+}
+
+.form-addbook select,
+.form-addbook input {
+  margin: 4px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.form-addbook button {
+  color: #fff;
+  font-size: 2em;
+  background: rgba(85, 85, 0, 0.933);
+  padding: 0 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
